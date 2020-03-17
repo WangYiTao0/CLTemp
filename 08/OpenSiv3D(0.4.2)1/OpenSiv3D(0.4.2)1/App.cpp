@@ -15,7 +15,7 @@ App::App()
 	// ”wŒi‚ð…F‚É‚·‚é
 	Scene::SetBackground(Palette::Black);
 
-	pos.x = 150;
+	pos.x = 350;
 	pos.y = 100;
 	m[0] = new CTriangle();
 	m[1] = new Marker(m[0]);
@@ -37,23 +37,42 @@ void App::Update()
 	//FontAsset(U"font2")(U"MouseButton[0]: ",MouseButton[0]).draw(100, 100);
 	//FontAsset(U"font2")(U"MouseButton[1]: ",MouseButton[1]).draw(100, 130);
 
-	if (s3d::Key1.down())
+
+
+	if (SimpleGUI::Button(U"Set Triangle as Parent", Vec2(0,0)))
 	{
+		//Vec2 curPos = m[0]->GetCurrentPosition();
+
 		m[0]->SetParent(nullptr);
 		m[1]->SetParent(m[0]);
 		m[2]->SetParent(m[1]);
+
+		//m[0]->SetPosition(curPos);
+		//m[1]->SetPosition(curPos);
+		//m[2]->SetPosition(curPos);
 	}
-	if (s3d::Key2.down())
+	if (SimpleGUI::Button(U"Set Circle as Parent", Vec2(0, 40)))
 	{
+		//Vec2 curPos = m[1]->GetCurrentPosition();
+
 		m[1]->SetParent(nullptr);
 		m[2]->SetParent(m[1]);
 		m[0]->SetParent(m[2]);
+
+		//m[1]->SetPosition(curPos);
+		//m[2]->SetPosition(curPos);
+		//m[0]->SetPosition(curPos);
 	}
-	if (s3d::Key3.down())
+	if (SimpleGUI::Button(U"Set Square as Parent", Vec2(0, 80)))
 	{
+		//Vec2 curPos = m[2]->GetCurrentPosition();
 		m[2]->SetParent(nullptr);
 		m[0]->SetParent(m[2]);
 		m[1]->SetParent(m[0]);
+
+		//m[2]->SetPosition(curPos);
+		//m[0]->SetPosition(curPos);
+		//m[1]->SetPosition(curPos);
 	}
 
 	if (!MouseButton[0] && MouseButton[1])

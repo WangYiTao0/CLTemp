@@ -49,6 +49,6 @@
 	public:
 		CTriangle() :Marker() {}
 		CTriangle(Marker* pp) :Marker(pp) {}
-		void Draw(void);
+		void Draw(void) override;
 	};
 
