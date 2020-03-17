@@ -48,7 +48,7 @@ private:
 	int x, y;
 	Vec2 pos;
 
-
+	int MouseButton[2] = { 0,0 };
 };
 
 

@@ -10,6 +10,8 @@ App::App()
 	Window::SetStyle(WindowStyle::Sizable);
 
 	Window::Resize({ 1280,720 });
+
+
 	// îwåiÇêÖêFÇ…Ç∑ÇÈ
 	Scene::SetBackground(Palette::Black);
 
@@ -26,9 +28,15 @@ App::App()
 
 void App::Update()
 {
-	Vec2 vec = Cursor::PosF();
 
-	if (MouseL.pressed())
+	Vec2 vec = Cursor::PosF();
+	MouseButton[0] = MouseButton[1];
+	MouseButton[1] = MouseL.pressed();
+
+	//FontAsset(U"font2")(U"MouseButton[0]: ",MouseButton[0]).draw(100, 100);
+	//FontAsset(U"font2")(U"MouseButton[1]: ",MouseButton[1]).draw(100, 130);
+
+	if (!MouseButton[0] && MouseButton[1])
 	{
 		for (int i = 0; i < 3; i++)
 		{
@@ -39,7 +47,7 @@ void App::Update()
 			}
 		}
 	}
-	if (MouseL.pressed())
+	if (MouseButton[0] && MouseButton[1])
 	{
 		if (pm)
 		{
@@ -50,12 +58,12 @@ void App::Update()
 			pm->SetPosition(vecP);
 		}
 	}
-	if (MouseL.pressed() && !MouseR.pressed())
+	if (MouseButton[0] && !MouseButton[1])
 	{
 		pm = nullptr;
 	}
 
-	if (MouseL.down())
+	if (MouseButton[0] && !MouseButton[1])
 	{
 		effect.add<RingEffect>(Cursor::Pos());
 	}
