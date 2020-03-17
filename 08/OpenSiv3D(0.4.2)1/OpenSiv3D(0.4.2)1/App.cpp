@@ -24,6 +24,7 @@ App::App()
 	m[1]->SetPosition(pos);
 	m[2]->SetPosition(pos);
 
+
 }
 
 void App::Update()
@@ -36,6 +37,25 @@ void App::Update()
 	//FontAsset(U"font2")(U"MouseButton[0]: ",MouseButton[0]).draw(100, 100);
 	//FontAsset(U"font2")(U"MouseButton[1]: ",MouseButton[1]).draw(100, 130);
 
+	if (s3d::Key1.down())
+	{
+		m[0]->SetParent(nullptr);
+		m[1]->SetParent(m[0]);
+		m[2]->SetParent(m[1]);
+	}
+	if (s3d::Key2.down())
+	{
+		m[1]->SetParent(nullptr);
+		m[2]->SetParent(m[1]);
+		m[0]->SetParent(m[2]);
+	}
+	if (s3d::Key3.down())
+	{
+		m[2]->SetParent(nullptr);
+		m[0]->SetParent(m[2]);
+		m[1]->SetParent(m[0]);
+	}
+
 	if (!MouseButton[0] && MouseButton[1])
 	{
 		for (int i = 0; i < 3; i++)
@@ -47,6 +67,7 @@ void App::Update()
 			}
 		}
 	}
+
 	if (MouseButton[0] && MouseButton[1])
 	{
 		if (pm)
